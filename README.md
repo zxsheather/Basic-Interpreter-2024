@@ -174,9 +174,9 @@ END Hahaha  --> an invalid END command
 
 本部分共占3%的分数。你所构造的测试点每成功攻击一位同学的程序，就获得1%的分数，直到获得3%为止。此外，你必须保证能够通过自己构造的测试点。否则，成功攻击他人程序的这一部分得分为0分。
 
-### Bonus: 计算器
+### Bonus: 四则运算计算器
 
-// TODO
+相关文件在[该链接](https://github.com/ACMClassCourse-2024/Python-Interpreter-2024/tree/main/resources)中的zip文件中。具体评测链接是[这里](https://acm.sjtu.edu.cn/OnlineJudge/problem/2020)。该作业要求大家完成一个简单的四则运算计算器，同时大家也会对std::any这个语言特性，和antlr中的visitor方法有一个较为直观的理解。而后者将大大有助于各位在之后的编译器项目中快速上手。
 
 ## 须知
 
