@@ -189,26 +189,26 @@ END Hahaha  --> an invalid END command
 <a name="9"></a>
 ### Bonus:构造测试点
 
-在本次作业中，我们要求各位同学在第 11 周周四(11.28) 18:30前向助教提供一份自己构造的数据输入。这份数据提交之后，原则上不应当再次修改。各位所提交的数据将会在标程中得到相应的输出，并且将作为该测试点的标准答案。各位所出的测试点我们将**不会**公开。关于各位构造的数据点，我们要求在onlinejudge上在1s内可以得到结果。为了防止出现可能的性能波动，我们并不希望各位构造较大的数据点。如果出现这种情况，助教可能会联系构造者重新构造。如果仍旧不符合要求，那么该测试点就不会在onlinejudge上进行测试。总结一下，我们希望测试点：
+在本次作业中，我们要求各位同学在第 11 周周四 (11.28) 18:30 前向助教提供一份自己构造的数据输入。这份数据提交之后，原则上不应当再次修改。各位所提交的数据将会在标程中得到相应的输出，并且将作为该测试点的标准答案。各位所出的测试点我们将**不会**公开。关于各位构造的数据点，我们要求在 onlinejudge 上在 1s 内可以得到结果。为了防止出现可能的性能波动，我们并不希望各位构造较大的数据点。如果出现这种情况，助教可能会联系构造者重新构造。如果仍旧不符合要求，那么该测试点就不会在 onlinejudge 上进行测试。总结一下，我们希望测试点：
 
-- 大小不超过1M
-- 在oj运行时间不超过500ms
+- 大小不超过 1M
+- 在oj运行时间不超过 500ms
 - 构造者可以通过自己的测试点
 
 <a name="10"></a>
 #### 通过同伴测试点
 
-本部分共占5%的分数。每有一个同伴测试点不能通过，就扣除1%的分数，直到扣完5%为止。
+本部分共占 5% 的分数。每有一个同伴测试点不能通过，就扣除 1% 的分数，直到扣完 5% 为止。
 
 <a name="11"></a>
 #### 测试点成功攻击他人程序
 
-本部分共占3%的分数。你所构造的测试点每成功攻击一位同学的程序，就获得1%的分数，直到获得3%为止。此外，你必须保证能够通过自己构造的测试点。否则，成功攻击他人程序的这一部分得分为0分。
+本部分共占 3% 的分数。你所构造的测试点每成功攻击一位同学的程序，就获得 1% 的分数，直到获得 3% 为止。此外，你必须保证能够通过自己构造的测试点。否则，成功攻击他人程序的这一部分得分为 0 分。
 
 <a name="12"></a>
 ### Bonus: 四则运算计算器
 
-相关文件在[该链接](https://github.com/ACMClassCourse-2024/Python-Interpreter-2024/tree/main/resources)中的zip文件中。具体评测链接是[这里](https://acm.sjtu.edu.cn/OnlineJudge/problem/2020)。该作业要求大家完成一个简单的四则运算计算器，同时大家也会对std::any这个语言特性，和antlr中的visitor方法有一个较为直观的理解。而后者将大大有助于各位在之后的编译器项目中快速上手。
+相关文件在[该链接](https://github.com/ACMClassCourse-2024/Python-Interpreter-2024/tree/main/resources)中的zip文件中。具体评测链接是[这里](https://acm.sjtu.edu.cn/OnlineJudge/problem/2020)。该作业要求大家完成一个简单的四则运算计算器，同时大家也会对 std::any 这个语言特性，和 antlr 中的 visitor 方法有一个较为直观的理解。而后者将大大有助于各位在之后的编译器项目中快速上手。
 
 <a name="13"></a>
 ## 须知
@@ -238,19 +238,19 @@ END Hahaha  --> an invalid END command
 
 #### 标程
 
-如果你用的是wsl或linux，请删除`Basic-Demo-64bit_for_mac_to_be_rename`。
+如果你用的是 wsl 或 linux ，请删除 `Basic-Demo-64bit_for_mac_to_be_rename` 。
 
-如果你用的是mac，请删除`Basic-Demo-64bit`，并将`Basic-Demo-64bit_for_mac_to_be_rename`改名为`Basic-Demo-64bit`。
+如果你用的是 mac ，请删除 `Basic-Demo-64bit` ，并将 `Basic-Demo-64bit_for_mac_to_be_rename` 改名为 `Basic-Demo-64bit` 。
 
 之后的步骤中我们认为你完成了此操作。
 
-`Basic-Demo-64bit`是标程的可执行文件，你可以用命令行输入`./Basic-Demo-64bit`来运行它，看看BASIC解释器是如何工作的。
+`Basic-Demo-64bit ` 是标程的可执行文件，你可以用命令行输入 `./Basic-Demo-64bit` 来运行它，看看 BASIC 解释器是如何工作的。
 
 【注：
 
-如果你用的不是wsl，而是mac或linux，在运行`./Basic-Demo-64bit`的时候，可能会出现 Permission denied 错误。这时候运行`chmod +x Basic-Demo-64bit`应当可以解决此问题。
+如果你用的不是 wsl ，而是 mac 或 linux ，在运行 `./Basic-Demo-64bit` 的时候，可能会出现 Permission denied 错误。这时候运行 `chmod +x Basic-Demo-64bit` 应当可以解决此问题。
 
-如果你在wsl下运行`./Basic-Demo-64bit`的时候出现 Permission denied 错误，可以先运行`chmod +x Basic-Demo-64bit`来修改权限。 】
+如果你在wsl下运行 `./Basic-Demo-64bit` 的时候出现 Permission denied 错误，可以先运行 `chmod +x Basic-Demo-64bit` 来修改权限。】
 
 #### 评测脚本使用方法
 
@@ -267,14 +267,14 @@ g++ -o score score.cpp
 
 你可以输入 `./score -h` 来查看帮助。
 
-【注意：如果你修改了仓库中给出框架的文件结构，请相应修改`score.cpp`中的`main`函数中的相关文件路径，否则无法正常进行本地测试。】
+【注意：如果你修改了仓库中给出框架的文件结构，请相应修改 `score.cpp` 中的 `main` 函数中的相关文件路径，否则无法正常进行本地测试。】
 
 <a name="16"></a>
 ### OJ 评测
 
-你需要使用git进行版本管理和代码提交。比如，你的git仓库地址是 `Your_profile/Your_repo`，你只需要在OJ的提交页面中输入`https://github.com/Your_profile/Your_repo` 即可。
+你需要使用git进行版本管理和代码提交。比如，你的git仓库地址是 `Your_profile/Your_repo`，你只需要在OJ的提交页面中输入 `https://github.com/Your_profile/Your_repo` 即可。
 
-**注意，你的可执行文件的名字必须为 `code`（如果你修改了Cmake，请务必保证可执行文件名仍为`code`）。**
+**注意，你的可执行文件的名字必须为 `code`（如果你修改了Cmake，请务必保证可执行文件名仍为 `code` ）。**
 
 测评文件内容默认是 Test 文件夹下提供的文件。这些文件和 oj 中测评的数据点是相同的。在这些测试点下，你的程序需要输出与标程相同的结果。
 
@@ -285,8 +285,8 @@ g++ -o score score.cpp
   - 按 OJ 得分给分
 - Code Review 20%
 - 通过同伴测试点 5%
-- 测试点成功攻击他人程序 3%(bonus)
-- 四则运算计算器 3%(bonus)
+- 测试点成功攻击他人程序 3% (bonus)
+- 四则运算计算器 3% (bonus)
 
 总得分大于 105% 按 105% 计。
 
