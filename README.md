@@ -193,6 +193,7 @@ END Hahaha  --> an invalid END command
 
 - 大小不超过 1M
 - 不出现除了空格和换行符以外的不可见字符
+- 不出现合法的HELP指令
 - 在oj运行时间不超过 500ms
 - 构造者可以通过自己的测试点
 
