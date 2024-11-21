@@ -44,7 +44,7 @@ Calculator
 ```
 
 `src` 中的文件全部由 `antlr4` 生成，不需要手动修改，但需要了解其中一些接口的作用。
-你需要阅读并了解[ExprParser.h](src/ExprParser.h)中各种内嵌类`*Context`的作用，及其成员变量和接口方法的使用。
+你需要阅读并了解[ExprParser.h](src/ExprParser.h)中各种内嵌类的作用，及其成员变量和接口方法的使用。
 
 `main.cpp` 是程序的入口，我们已经写好了测试代码，也不需要修改。
 
@@ -77,14 +77,19 @@ int &ref = std::any_cast <int&> (x);
 
 ## 你需要了解的
 
-- 初步了解表达式树的概念，知道`*Context`类实际上都是树上的节点.
-- 类之间的派生关系，例如各种`*Context`类都继承自`antlr4::ParserRuleContext`类，而`antlr4::ParserRuleContext`的祖父类就是`antlr4::ParseTree`.
+下面以`*Context`表示所有以`Context`结尾的类，例如`ExprParser::AddSubContext`等。
+
+- 初步了解表达式树的概念，知道`*Context`类的含义.
+- 类之间的派生关系，例如各种`*Context`类都继承自`antlr4::ParserRuleContext`类.
 - `visit`函数的使用，用于访问树上的节点.
 ```cpp
 virtual std::any visit(ParseTree *tree) override {
   return tree->accept(this);
 }
 ```
-- `Context`类及其成员，用于访问子树.
+- `*Context`每个类及其成员，用于访问子树.
 - `ExprParser`中的枚举类`enum`，用于判断表达式类型.
 
+## 评测
+
+本bonus部分不设OJ评测。如果你完成了此项目，请cr时向助教展示。加分多少取决于你对代码的理解。

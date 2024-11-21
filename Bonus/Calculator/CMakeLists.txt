@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.22) # check your cmake version and modify this line
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20) # c++20 is required
 project(Calculator)
 
-include_directories(/usr/include/antlr4-runtime)
+include_directories(/usr/include/antlr4-runtime) # including runtime package
 
 include_directories(src)
 
