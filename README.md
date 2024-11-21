@@ -210,7 +210,7 @@ END Hahaha  --> an invalid END command
 <a name="12"></a>
 ### Bonus: 四则运算计算器
 
-该作业要求大家完成一个简单的四则运算计算器，同时大家也会对 std::any 这个语言特性，和 antlr 中的 visitor 方法有一个较为直观的理解。而后者将大大有助于各位在之后的编译器项目中快速上手。
+该作业在[Calculator](Bonus%2FCalculator)文件夹下，要求大家完成一个简单的四则运算计算器，同时大家也会对 std::any 这个语言特性，和 antlr 中的 visitor 方法有一个较为直观的理解。后者将大大有助于各位在之后的编译器项目中快速上手。
 
 <a name="13"></a>
 ## 须知
