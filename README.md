@@ -303,7 +303,7 @@ g++ -o score score.cpp
 
 感谢 22' ACM HenryHe0123, 22' ACM Irfnfnkemed 提供的文档 `Minimal-BASIC-Interpreter-2023.pdf` 。
 
-<a name="1"></a>
+<a name="20"></a>
 ## Q&A
 
 ### 构造测试点时允许数据溢出吗？
