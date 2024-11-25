@@ -126,12 +126,15 @@ void processLine(std::string line, Program &program, EvalState &state) {
             }else if(token=="LET") {
                 Statement *stmt =new LetStatement(scanner);
                 stmt->execute(state,program);
+                delete stmt;
             }else if(token=="PRINT") {
                 Statement *stmt =new PrintStatement(scanner);
                 stmt->execute(state,program);
+                delete stmt;
             }else if(token=="INPUT") {
                 Statement *stmt =new InputStatement(scanner);
                 stmt->execute(state,program);
+                delete stmt;
             }else {
                 error("SYNTAX ERROR");
             }
