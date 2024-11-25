@@ -72,7 +72,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
                     Statement *stmt =new PrintStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
-                }else if(token=="Input") {
+                }else if(token=="INPUT") {
                     Statement *stmt =new InputStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
@@ -127,6 +127,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
         }
 
     }
+
 
 
     //todo

@@ -86,7 +86,7 @@ IfStatement::IfStatement(TokenScanner &scanner) {
             error("SYNTAX ERROR");
         }
         scanner2=scanner.nextToken();
-        if(scanner2=="="||scanner2=="<"||scanner2==">"||scanner2=="<="||scanner2==">="||scanner2=="<>") {
+        if(scanner2=="="||scanner2=="<"||scanner2==">") {
             break;
         }
     }
@@ -117,12 +117,6 @@ void IfStatement::execute(EvalState &state, Program &program) {
         condition = (lhsValue < rhsValue);
     } else if (op == ">") {
         condition = (lhsValue > rhsValue);
-    } else if (op == "<=") {
-        condition = (lhsValue <= rhsValue);
-    } else if (op == ">=") {
-        condition = (lhsValue >= rhsValue);
-    } else if (op == "<>") {
-        condition = (lhsValue != rhsValue);
     } else {
         error("SYNTAX ERROR");
     }
