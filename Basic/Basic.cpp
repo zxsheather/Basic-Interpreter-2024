@@ -122,9 +122,19 @@ void processLine(std::string line, Program &program, EvalState &state) {
                 exit(0);
             }else if(token=="HELP") {
                 std::cout<<"Yet another basic interpreter"<<std::endl;
+            }else if(token=="LET") {
+                Statement *stmt =new LetStatement(scanner);
+                stmt->execute(state,program);
+            }else if(token=="PRINT") {
+                Statement *stmt =new PrintStatement(scanner);
+                stmt->execute(state,program);
+            }else if(token=="INPUT") {
+                Statement *stmt =new InputStatement(scanner);
+                stmt->execute(state,program);
             }else {
                 error("SYNTAX ERROR");
             }
+
         }
 
     }
