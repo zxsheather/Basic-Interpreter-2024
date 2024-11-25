@@ -60,10 +60,23 @@ PrintStatement::~PrintStatement() {
 InputStatement::InputStatement(TokenScanner &scanner) {
     var = scanner.nextToken();
 }
+bool isNumber(std::string str) {
+    for(int i=0;i<str.length();i++) {
+        if((str[i]<'0'||str[i]>'9')&&!(i==0&&str[i]=='-')) {
+            return false;
+        }
+    }
+    return true;
+}
 void InputStatement::execute(EvalState &state, Program &program) {
     std::string input;
     std::cout<<" ? ";
-    std::cin>>input;
+    getline(std::cin,input);
+    while(!isNumber(input)) {
+        std::cout<<"INVALID NUMBER"<<std::endl;
+        std::cout<<" ? ";
+        std::cin>>input;
+    }
     state.setValue(var,stringToInteger(input));
     program.getNextLineNumber(program.getCurrentLine());
 }

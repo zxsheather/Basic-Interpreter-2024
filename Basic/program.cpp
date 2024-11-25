@@ -95,7 +95,6 @@ void Program::setCurrentLine(int lineNumber) {
     }else {
         error("LINE NUMBER ERROR");
     }
-    // Replace this stub with your own code
     //todo
 }
 
