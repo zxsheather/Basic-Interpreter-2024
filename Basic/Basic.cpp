@@ -24,7 +24,6 @@ void processLine(std::string line, Program &program, EvalState &state);
 int main() {
     EvalState state;
     Program program;
-    program.setEndState(false);
     //cout << "Stub implementation of BASIC" << endl;
     while (true) {
         try {
@@ -62,6 +61,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
         if(isdigit(token[0])) {
             //program line
             int LineNumber=stringToInteger(token);
+            program.setEndState(false);
             if(scanner.hasMoreTokens()) {
                 std::string token=scanner.nextToken();
                 if(token=="LET") {
@@ -108,6 +108,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
                     stmt->execute(state,program);
                     LineNumber=program.getCurrentLine();
                 }
+                program.setEndState(false);
             }else if(token=="LIST") {
                 int LineNumber=program.getFirstLineNumber();
                 while(LineNumber!=-1) {
