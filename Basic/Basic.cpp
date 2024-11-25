@@ -68,37 +68,37 @@ void processLine(std::string line, Program &program, EvalState &state) {
                     Statement *stmt =new LetStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
-                    delete stmt;
+                    //delete stmt;
                 }else if(token=="PRINT") {
                     Statement *stmt =new PrintStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
-                    delete stmt;
+                    //delete stmt;
                 }else if(token=="INPUT") {
                     Statement *stmt =new InputStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
-                    delete stmt;
+                    //delete stmt;
                 }else if(token=="GOTO") {
                     Statement *stmt =new GotoStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
-                    delete stmt;
+                    //delete stmt;
                 }else if(token=="IF") {
                     Statement *stmt =new IfStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
-                    delete stmt;
+                    //delete stmt;
                 }else if(token=="END") {
                     Statement *stmt =new EndStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
-                    delete stmt;
+                    //delete stmt;
                 }else if(token=="REM") {
                     Statement *stmt =new RemStatement(scanner);
                     program.addSourceLine(LineNumber,line);
                     program.setParsedStatement(LineNumber,stmt);
-                    delete stmt;
+                    //delete stmt;
                 }else {
                     error("SYNTAX ERROR");
                 }

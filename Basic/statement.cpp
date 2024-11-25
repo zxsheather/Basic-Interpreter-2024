@@ -20,137 +20,159 @@ Statement::~Statement() = default;
 
 
 RemStatement::RemStatement(TokenScanner &scanner) {
-    comment="";
-    while(scanner.hasMoreTokens()) {
-        comment += scanner.nextToken() + " ";
-    }
+  comment = "";
+  while (scanner.hasMoreTokens()) {
+    comment += scanner.nextToken() + " ";
+  }
 }
+
 void RemStatement::execute(EvalState &state, Program &program) {
-    program.getNextLineNumber(program.getCurrentLine());
+  program.getNextLineNumber(program.getCurrentLine());
 }
+
 RemStatement::~RemStatement() = default;
 
 LetStatement::LetStatement(TokenScanner &scanner) {
-    var = scanner.nextToken();
-    if(scanner.nextToken()!="=") {
-        error("SYNTAX ERROR");
-    }
-    exp = parseExp(scanner);
+  var = scanner.nextToken();
+  if (var == "LET" || var == "PRINT" || var == "INPUT" || var == "GOTO" || var == "IF" || var == "END" || var == "REM"
+      || var == "RUN" || var == "LIST" || var == "CLEAR" || var == "QUIT" || var == "HELP") {
+    LetStatement::~LetStatement();
+    error("SYNTAX ERROR");
+  }
+  if (scanner.nextToken() != "=") {
+    LetStatement::~LetStatement();
+    error("SYNTAX ERROR");
+  }
+  exp = parseExp(scanner);
 }
+
 void LetStatement::execute(EvalState &state, Program &program) {
-    int value=exp->eval(state);
-    state.setValue(var,value);
-    program.getNextLineNumber(program.getCurrentLine());
+  int value = exp->eval(state);
+  state.setValue(var, value);
+  program.getNextLineNumber(program.getCurrentLine());
 }
+
 LetStatement::~LetStatement() {
-    delete exp;
+  delete exp;
 }
 
 PrintStatement::PrintStatement(TokenScanner &scanner) {
-    exp = parseExp(scanner);
+  exp = parseExp(scanner);
 }
+
 void PrintStatement::execute(EvalState &state, Program &program) {
-    std::cout<<exp->eval(state)<<std::endl;
-    program.getNextLineNumber(program.getCurrentLine());
+  std::cout << exp->eval(state) << std::endl;
+  program.getNextLineNumber(program.getCurrentLine());
 }
+
 PrintStatement::~PrintStatement() {
-    delete exp;
+  delete exp;
 }
 
 InputStatement::InputStatement(TokenScanner &scanner) {
-    var = scanner.nextToken();
+  var = scanner.nextToken();
 }
+
 bool isNumber(std::string str) {
-    for(int i=0;i<str.length();i++) {
-        if((str[i]<'0'||str[i]>'9')&&!(i==0&&str[i]=='-')) {
-            return false;
-        }
+  for (int i = 0; i < str.length(); i++) {
+    if ((str[i] < '0' || str[i] > '9') && !(i == 0 && str[i] == '-')) {
+      return false;
     }
-    return true;
+  }
+  return true;
 }
+
 void InputStatement::execute(EvalState &state, Program &program) {
-    std::string input;
-    std::cout<<" ? ";
-    getline(std::cin,input);
-    while(!isNumber(input)) {
-        std::cout<<"INVALID NUMBER"<<std::endl;
-        std::cout<<" ? ";
-        std::cin>>input;
-    }
-    state.setValue(var,stringToInteger(input));
-    program.getNextLineNumber(program.getCurrentLine());
+  std::string input;
+  std::cout << " ? ";
+  getline(std::cin, input);
+  while (!isNumber(input)) {
+    std::cout << "INVALID NUMBER" << std::endl;
+    std::cout << " ? ";
+    std::cin >> input;
+  }
+  state.setValue(var, stringToInteger(input));
+  program.getNextLineNumber(program.getCurrentLine());
 }
-InputStatement::~InputStatement() =default;
+
+InputStatement::~InputStatement() = default;
 
 GotoStatement::GotoStatement(TokenScanner &scanner) {
-    lineNumber = stringToInteger(scanner.nextToken());
+  lineNumber = stringToInteger(scanner.nextToken());
 }
+
 void GotoStatement::execute(EvalState &state, Program &program) {
-    program.setCurrentLine(lineNumber);
+  program.setCurrentLine(lineNumber);
 }
+
 GotoStatement::~GotoStatement() = default;
 
 IfStatement::IfStatement(TokenScanner &scanner) {
-    std::string scanner1="";
-    std::string scanner2=scanner.nextToken();
-    while(true) {
-        scanner1+=scanner2;
-        if(!scanner.hasMoreTokens()) {
-
-            error("SYNTAX ERROR");
-        }
-        scanner2=scanner.nextToken();
-        if(scanner2=="="||scanner2=="<"||scanner2==">") {
-            break;
-        }
+  std::string scanner1 = "";
+  std::string scanner2 = scanner.nextToken();
+  while (true) {
+    scanner1 += scanner2;
+    if (!scanner.hasMoreTokens()) {
+      IfStatement::~IfStatement();
+      error("SYNTAX ERROR");
     }
-    TokenScanner scanner3=scanner1;
-    lhs=parseExp(scanner3);
-    op = scanner2;
-    scanner2=scanner.nextToken();
-    scanner1="";
-    while(scanner2!="THEN") {
-        scanner1+=scanner2;
-        if(!scanner.hasMoreTokens()) {
-            error("SYNTAX ERROR");
-        }
-        scanner2=scanner.nextToken();
+    scanner2 = scanner.nextToken();
+    if (scanner2 == "=" || scanner2 == "<" || scanner2 == ">") {
+      break;
     }
-    TokenScanner scanner4=scanner1;
-    rhs = parseExp(scanner4);
-    lineNumber = stringToInteger(scanner.nextToken());
+  }
+  TokenScanner scanner3 = scanner1;
+  lhs = parseExp(scanner3);
+  op = scanner2;
+  scanner2 = scanner.nextToken();
+  scanner1 = "";
+  while (scanner2 != "THEN") {
+    scanner1 += scanner2;
+    if (!scanner.hasMoreTokens()) {
+      error("SYNTAX ERROR");
+    }
+    scanner2 = scanner.nextToken();
+  }
+  TokenScanner scanner4 = scanner1;
+  rhs = parseExp(scanner4);
+  lineNumber = stringToInteger(scanner.nextToken());
 }
+
 void IfStatement::execute(EvalState &state, Program &program) {
-    int lhsValue = lhs->eval(state);
-    int rhsValue = rhs->eval(state);
-    bool condition = false;
+  int lhsValue = lhs->eval(state);
+  int rhsValue = rhs->eval(state);
+  bool condition = false;
 
-    if (op == "=") {
-        condition = (lhsValue == rhsValue);
-    } else if (op == "<") {
-        condition = (lhsValue < rhsValue);
-    } else if (op == ">") {
-        condition = (lhsValue > rhsValue);
-    } else {
-        error("SYNTAX ERROR");
-    }
-    if (condition) {
-        program.setCurrentLine(lineNumber);
-    }else {
-        program.getNextLineNumber(program.getCurrentLine());
-    }
+  if (op == "=") {
+    condition = (lhsValue == rhsValue);
+  } else if (op == "<") {
+    condition = (lhsValue < rhsValue);
+  } else if (op == ">") {
+    condition = (lhsValue > rhsValue);
+  } else {
+    IfStatement::~IfStatement();
+    error("SYNTAX ERROR");
+  }
+  if (condition) {
+    program.setCurrentLine(lineNumber);
+  } else {
+    program.getNextLineNumber(program.getCurrentLine());
+  }
 }
+
 IfStatement::~IfStatement() {
-    delete lhs;
-    delete rhs;
+  delete lhs;
+  delete rhs;
 }
 
 EndStatement::EndStatement(TokenScanner &scanner) {
-    //do nothing
+  //do nothing
 }
+
 void EndStatement::execute(EvalState &state, Program &program) {
-    program.setEndState(true);
+  program.setEndState(true);
 }
+
 EndStatement::~EndStatement() = default;
 
 
