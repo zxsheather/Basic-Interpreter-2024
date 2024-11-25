@@ -96,6 +96,7 @@ IfStatement::IfStatement(TokenScanner &scanner) {
     while(true) {
         scanner1+=scanner2;
         if(!scanner.hasMoreTokens()) {
+
             error("SYNTAX ERROR");
         }
         scanner2=scanner.nextToken();
