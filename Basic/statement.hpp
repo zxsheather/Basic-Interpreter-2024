@@ -85,4 +85,69 @@ public:
  * specify its own destructor method to free that memory.
  */
 
+class RemStatement : public Statement {
+public:
+ explicit RemStatement(TokenScanner &scanner);
+ void execute(EvalState &state, Program &program) override;
+ ~RemStatement() override;
+private:
+ std::string comment;
+};
+
+class LetStatement : public Statement {
+public:
+ explicit LetStatement(TokenScanner &scanner);
+ void execute(EvalState &state, Program &program) override;
+ ~LetStatement() override;
+private:
+ std::string var;
+ Expression *exp;
+};
+
+class PrintStatement : public Statement {
+public:
+ explicit PrintStatement(TokenScanner &scanner);
+ void execute(EvalState &state, Program &program) override;
+ ~PrintStatement() override;
+private:
+ Expression *exp;
+};
+
+class InputStatement : public Statement {
+public:
+ explicit InputStatement(TokenScanner &scanner);
+ void execute(EvalState &state, Program &program) override;
+ ~InputStatement() override;
+private:
+ std::string var;
+};
+
+class GotoStatement : public Statement {
+public:
+ explicit GotoStatement(TokenScanner &scanner);
+ void execute(EvalState &state, Program &program) override;
+ ~GotoStatement() override;
+private:
+ int lineNumber;
+};
+
+class IfStatement : public Statement {
+public:
+ explicit IfStatement(TokenScanner &scanner);
+ void execute(EvalState &state, Program &program) override;
+ ~IfStatement() override;
+
+private:
+ Expression *lhs;
+ Expression *rhs;
+ std::string op;
+ int lineNumber;
+};
+
+class EndStatement : public Statement {
+public:
+ explicit EndStatement(TokenScanner &scanner);
+ void execute(EvalState &state, Program &program) override;
+ ~EndStatement() override;
+};
 #endif

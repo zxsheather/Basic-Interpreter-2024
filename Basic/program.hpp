@@ -140,11 +140,22 @@ public:
 
     int getNextLineNumber(int lineNumber);
 
+    void setCurrentLine(int lineNumber);
+
+    int getCurrentLine() const;
+
+    void setEndState(bool state);
+
+    bool getEndState();
     //more func to add
     //todo
 
 private:
-
+  std::set<int> lineNumbers;
+  std::unordered_map<int, std::string> sourceLines;
+  std::unordered_map<int, Statement *> parsedLines;
+  int currentLine;
+  bool end_state;
     // Fill this in with whatever types and instance variables you need
     //todo
 };

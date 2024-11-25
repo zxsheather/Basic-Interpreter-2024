@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <iostream>
 #include "error.hpp"
+#include <sstream>
 #include "strlib.hpp"
 
 /* Function prototypes */
@@ -17,7 +18,6 @@
  * ----------------------------------------
  * These functions use the <sstream> library to perform the conversion.
  */
-
 std::string integerToString(int n) {
     std::ostringstream stream;
     stream << n;

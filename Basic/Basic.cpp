@@ -24,6 +24,7 @@ void processLine(std::string line, Program &program, EvalState &state);
 int main() {
     EvalState state;
     Program program;
+    program.setEndState(false);
     //cout << "Stub implementation of BASIC" << endl;
     while (true) {
         try {
@@ -56,6 +57,77 @@ void processLine(std::string line, Program &program, EvalState &state) {
     scanner.ignoreWhitespace();
     scanner.scanNumbers();
     scanner.setInput(line);
+    if(scanner.hasMoreTokens()) {
+        std::string token=scanner.nextToken();
+        if(isdigit(token[0])) {
+            //program line
+            int LineNumber=stringToInteger(token);
+            if(scanner.hasMoreTokens()) {
+                std::string token=scanner.nextToken();
+                if(token=="LET") {
+                    Statement *stmt =new LetStatement(scanner);
+                    program.addSourceLine(LineNumber,line);
+                    program.setParsedStatement(LineNumber,stmt);
+                }else if(token=="PRINT") {
+                    Statement *stmt =new PrintStatement(scanner);
+                    program.addSourceLine(LineNumber,line);
+                    program.setParsedStatement(LineNumber,stmt);
+                }else if(token=="Input") {
+                    Statement *stmt =new InputStatement(scanner);
+                    program.addSourceLine(LineNumber,line);
+                    program.setParsedStatement(LineNumber,stmt);
+                }else if(token=="GOTO") {
+                    Statement *stmt =new GotoStatement(scanner);
+                    program.addSourceLine(LineNumber,line);
+                    program.setParsedStatement(LineNumber,stmt);
+                }else if(token=="IF") {
+                    Statement *stmt =new IfStatement(scanner);
+                    program.addSourceLine(LineNumber,line);
+                    program.setParsedStatement(LineNumber,stmt);
+                }else if(token=="END") {
+                    Statement *stmt =new EndStatement(scanner);
+                    program.addSourceLine(LineNumber,line);
+                    program.setParsedStatement(LineNumber,stmt);
+                }else if(token=="REM") {
+                    Statement *stmt =new RemStatement(scanner);
+                    program.addSourceLine(LineNumber,line);
+                    program.setParsedStatement(LineNumber,stmt);
+                }else {
+                    error("SYNTAX ERROR");
+                }
+            }else {
+                program.removeSourceLine(LineNumber);
+            }
+        }else {
+            //command
+            if(token=="RUN") {
+                int LineNumber=program.getFirstLineNumber();
+                program.setCurrentLine(LineNumber);
+                while(!program.getEndState()&&LineNumber!=-1) {
+                    Statement *stmt=program.getParsedStatement(LineNumber);
+                    stmt->execute(state,program);
+                    LineNumber=program.getCurrentLine();
+                }
+            }else if(token=="LIST") {
+                int LineNumber=program.getFirstLineNumber();
+                while(LineNumber!=-1) {
+                    std::cout<<program.getSourceLine(LineNumber)<<std::endl;
+                    LineNumber=program.getNextLineNumber(LineNumber);
+                }
+            }else if(token=="CLEAR") {
+                program.clear();
+                state.Clear();
+            }else if(token=="QUIT") {
+                exit(0);
+            }else if(token=="HELP") {
+                std::cout<<"Yet another basic interpreter"<<std::endl;
+            }else {
+                error("SYNTAX ERROR");
+            }
+        }
+
+    }
+
 
     //todo
 }
