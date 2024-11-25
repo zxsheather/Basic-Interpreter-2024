@@ -119,7 +119,6 @@ void processLine(std::string line, Program &program, EvalState &state) {
                 program.clear();
                 state.Clear();
             }else if(token=="QUIT") {
-                delete &program;
                 exit(0);
             }else if(token=="HELP") {
                 std::cout<<"Yet another basic interpreter"<<std::endl;
