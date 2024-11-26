@@ -13,6 +13,8 @@
 #include "Utils/error.hpp"
 #include "Utils/tokenScanner.hpp"
 #include "Utils/strlib.hpp"
+#include <memory>
+
 
 
 /* Function prototypes */
@@ -167,32 +169,27 @@ void processLine(std::string line, Program &program, EvalState &state) {
             program.setEndState(false);
             if (scanner.hasMoreTokens()) {
                 std::string token = scanner.nextToken();
-                Statement *stmt = nullptr;
-                try {
-                    if (token == "LET") {
-                        stmt = new LetStatement(scanner);
-                    } else if (token == "PRINT") {
-                        stmt = new PrintStatement(scanner);
-                    } else if (token == "INPUT") {
-                        stmt = new InputStatement(scanner);
-                    } else if (token == "GOTO") {
-                        stmt = new GotoStatement(scanner);
-                    } else if (token == "IF") {
-                        stmt = new IfStatement(scanner);
-                    } else if (token == "END") {
-                        stmt = new EndStatement(scanner);
-                    } else if (token == "REM") {
-                        stmt = new RemStatement(scanner);
-                    } else {
-                        error("SYNTAX ERROR");
-                    }
-                    if (stmt != nullptr) {
-                        program.addSourceLine(LineNumber, line);
-                        program.setParsedStatement(LineNumber, stmt);
-                    }
-                } catch (ErrorException &ex) {
-                    delete stmt;
-                    throw;
+                std::unique_ptr<Statement> stmt;
+                if (token == "LET") {
+                    stmt = std::make_unique<LetStatement>(scanner);
+                } else if (token == "PRINT") {
+                    stmt = std::make_unique<PrintStatement>(scanner);
+                } else if (token == "INPUT") {
+                    stmt = std::make_unique<InputStatement>(scanner);
+                } else if (token == "GOTO") {
+                    stmt = std::make_unique<GotoStatement>(scanner);
+                } else if (token == "IF") {
+                    stmt = std::make_unique<IfStatement>(scanner);
+                } else if (token == "END") {
+                    stmt = std::make_unique<EndStatement>(scanner);
+                } else if (token == "REM") {
+                    stmt = std::make_unique<RemStatement>(scanner);
+                } else {
+                    error("SYNTAX ERROR");
+                }
+                if (stmt) {
+                    program.addSourceLine(LineNumber, line);
+                    program.setParsedStatement(LineNumber, std::move(stmt));
                 }
             } else {
                 program.removeSourceLine(LineNumber);
@@ -218,41 +215,18 @@ void processLine(std::string line, Program &program, EvalState &state) {
                 program.clear();
                 state.Clear();
             } else if (token == "QUIT") {
-                program.clear();
-                state.Clear();
                 exit(0);
             } else if (token == "HELP") {
                 std::cout << "Yet another basic interpreter" << std::endl;
             } else if (token == "LET") {
-                LetStatement *stmt=nullptr;
-                try {
-                    stmt = new LetStatement(scanner);
-                    stmt->execute(state, program);
-                } catch (ErrorException &ex) {
-                    delete stmt;
-                    throw;
-                }
-                delete stmt;
+                auto stmt = std::make_unique<LetStatement>(scanner);
+                stmt->execute(state, program);
             } else if (token == "PRINT") {
-                PrintStatement *stmt=nullptr;
-                try {
-                    stmt = new PrintStatement(scanner);
-                    stmt->execute(state, program);
-                } catch (ErrorException &ex) {
-                    delete stmt;
-                    throw;
-                }
-                delete stmt;
+                auto stmt = std::make_unique<PrintStatement>(scanner);
+                stmt->execute(state, program);
             } else if (token == "INPUT") {
-                InputStatement *stmt=nullptr;
-                try {
-                    stmt = new InputStatement(scanner);
-                    stmt->execute(state, program);
-                } catch (ErrorException &ex) {
-                    delete stmt;
-                    throw;
-                }
-                delete stmt;
+                auto stmt = std::make_unique<InputStatement>(scanner);
+                stmt->execute(state, program);
             } else {
                 error("SYNTAX ERROR");
             }

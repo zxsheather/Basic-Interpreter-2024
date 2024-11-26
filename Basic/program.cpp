@@ -21,9 +21,6 @@ Program::~Program() {
 void Program::clear() {
     lineNumbers.clear();
     sourceLines.clear();
-    for(auto &it:parsedLines) {
-        delete it.second;
-    }
     parsedLines.clear();
     // Replace this stub with your own code
     //todo
@@ -38,7 +35,6 @@ void Program::addSourceLine(int lineNumber, const std::string &line) {
 void Program::removeSourceLine(int lineNumber) {
     lineNumbers.erase(lineNumber);
     sourceLines.erase(lineNumber);
-    delete parsedLines[lineNumber];
     parsedLines.erase(lineNumber);
     //todo
 }
@@ -49,12 +45,9 @@ std::string Program::getSourceLine(int lineNumber) {
     //todo
 }
 
-void Program::setParsedStatement(int lineNumber, Statement *stmt) {
+void Program::setParsedStatement(int lineNumber, std::unique_ptr<Statement>stmt) {
     if(lineNumbers.find(lineNumber)!=lineNumbers.end()) {
-        if(parsedLines.find(lineNumber)!=parsedLines.end()) {
-            delete parsedLines[lineNumber];
-        }
-        parsedLines[lineNumber] = stmt;
+        parsedLines[lineNumber] = std::move(stmt);
     }else {
         error("LINE NUMBER ERROR");
     }
@@ -64,7 +57,7 @@ void Program::setParsedStatement(int lineNumber, Statement *stmt) {
 
 Statement *Program::getParsedStatement(int lineNumber) {
     if(lineNumbers.find(lineNumber)!=lineNumbers.end()) {
-        return parsedLines[lineNumber];
+        return parsedLines[lineNumber].get();
     }else {
         return nullptr;
     }

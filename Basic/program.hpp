@@ -106,7 +106,7 @@ public:
  * exists, the memory for that statement is reclaimed.
  */
 
-    void setParsedStatement(int lineNumber, Statement *stmt);
+    void setParsedStatement(int lineNumber, std::unique_ptr<Statement> stmt);
 
 /*
  * Method: getParsedStatement
@@ -153,7 +153,7 @@ public:
 private:
   std::set<int> lineNumbers;
   std::unordered_map<int, std::string> sourceLines;
-  std::unordered_map<int, Statement *> parsedLines;
+  std::unordered_map<int, std::unique_ptr<Statement> > parsedLines;
   int currentLine;
   bool end_state;
     // Fill this in with whatever types and instance variables you need
