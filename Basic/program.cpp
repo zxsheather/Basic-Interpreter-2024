@@ -35,6 +35,7 @@ void Program::addSourceLine(int lineNumber, const std::string &line) {
 void Program::removeSourceLine(int lineNumber) {
     lineNumbers.erase(lineNumber);
     sourceLines.erase(lineNumber);
+    delete parsedLines[lineNumber];
     parsedLines.erase(lineNumber);
     //todo
 }
