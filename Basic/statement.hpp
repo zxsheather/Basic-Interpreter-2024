@@ -69,7 +69,7 @@ public:
  * controlling the operation of the interpreter.
  */
 
-    virtual void execute(EvalState &state, Program &program) = 0;
+    virtual void execute(EvalState &state, Program &program,bool flag) = 0;
 
 };
 
@@ -88,7 +88,7 @@ public:
 class RemStatement : public Statement {
 public:
  explicit RemStatement(TokenScanner &scanner);
- void execute(EvalState &state, Program &program) override;
+ void execute(EvalState &state, Program &program,bool flag) override;
  ~RemStatement() override;
 private:
  std::string comment;
@@ -97,7 +97,7 @@ private:
 class LetStatement : public Statement {
 public:
  explicit LetStatement(TokenScanner &scanner);
- void execute(EvalState &state, Program &program) override;
+ void execute(EvalState &state, Program &program,bool flag) override;
  ~LetStatement() override;
 private:
  std::string var;
@@ -107,7 +107,7 @@ private:
 class PrintStatement : public Statement {
 public:
  explicit PrintStatement(TokenScanner &scanner);
- void execute(EvalState &state, Program &program) override;
+ void execute(EvalState &state, Program &program,bool flag) override;
  ~PrintStatement() override;
 private:
  Expression *exp;
@@ -116,7 +116,7 @@ private:
 class InputStatement : public Statement {
 public:
  explicit InputStatement(TokenScanner &scanner);
- void execute(EvalState &state, Program &program) override;
+ void execute(EvalState &state, Program &program,bool flag) override;
  ~InputStatement() override;
 private:
  std::string var;
@@ -125,7 +125,7 @@ private:
 class GotoStatement : public Statement {
 public:
  explicit GotoStatement(TokenScanner &scanner);
- void execute(EvalState &state, Program &program) override;
+ void execute(EvalState &state, Program &program,bool flag) override;
  ~GotoStatement() override;
 private:
  int lineNumber;
@@ -134,7 +134,7 @@ private:
 class IfStatement : public Statement {
 public:
  explicit IfStatement(TokenScanner &scanner);
- void execute(EvalState &state, Program &program) override;
+ void execute(EvalState &state, Program &program,bool flag) override;
  ~IfStatement() override;
 
 private:
@@ -147,7 +147,7 @@ private:
 class EndStatement : public Statement {
 public:
  explicit EndStatement(TokenScanner &scanner);
- void execute(EvalState &state, Program &program) override;
+ void execute(EvalState &state, Program &program,bool flag) override;
  ~EndStatement() override;
 };
 #endif

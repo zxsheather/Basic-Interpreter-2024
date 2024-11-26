@@ -26,7 +26,7 @@ RemStatement::RemStatement(TokenScanner &scanner) {
   }
 }
 
-void RemStatement::execute(EvalState &state, Program &program) {
+void RemStatement::execute(EvalState &state, Program &program,bool flag) {
   program.getNextLineNumber(program.getCurrentLine());
 }
 
@@ -44,10 +44,12 @@ LetStatement::LetStatement(TokenScanner &scanner) {
   exp = parseExp(scanner);
 }
 
-void LetStatement::execute(EvalState &state, Program &program) {
+void LetStatement::execute(EvalState &state, Program &program,bool flag) {
   int value = exp->eval(state);
   state.setValue(var, value);
-  program.getNextLineNumber(program.getCurrentLine());
+  if(flag) {
+    program.getNextLineNumber(program.getCurrentLine());
+  }
 }
 
 LetStatement::~LetStatement() {
@@ -59,10 +61,12 @@ PrintStatement::PrintStatement(TokenScanner &scanner) {
   exp = parseExp(scanner);
 }
 
-void PrintStatement::execute(EvalState &state, Program &program) {
+void PrintStatement::execute(EvalState &state, Program &program,bool flag) {
   int value = exp->eval(state);
   std::cout << value << std::endl;
-  program.getNextLineNumber(program.getCurrentLine());
+  if(flag) {
+    program.getNextLineNumber(program.getCurrentLine());
+  }
 }
 
 PrintStatement::~PrintStatement() {
@@ -82,7 +86,7 @@ bool isNumber(std::string str) {
   return true;
 }
 
-void InputStatement::execute(EvalState &state, Program &program) {
+void InputStatement::execute(EvalState &state, Program &program,bool flag) {
   std::string input;
   std::cout << " ? ";
   getline(std::cin, input);
@@ -92,7 +96,9 @@ void InputStatement::execute(EvalState &state, Program &program) {
     std::cin >> input;
   }
   state.setValue(var, stringToInteger(input));
-  program.getNextLineNumber(program.getCurrentLine());
+  if(flag) {
+    program.getNextLineNumber(program.getCurrentLine());
+  }
 }
 
 InputStatement::~InputStatement() = default;
@@ -101,7 +107,7 @@ GotoStatement::GotoStatement(TokenScanner &scanner) {
   lineNumber = stringToInteger(scanner.nextToken());
 }
 
-void GotoStatement::execute(EvalState &state, Program &program) {
+void GotoStatement::execute(EvalState &state, Program &program,bool flag) {
   program.setCurrentLine(lineNumber);
 }
 
@@ -141,7 +147,7 @@ IfStatement::IfStatement(TokenScanner &scanner) {
   lineNumber = stringToInteger(scanner.nextToken());
 }
 
-void IfStatement::execute(EvalState &state, Program &program) {
+void IfStatement::execute(EvalState &state, Program &program,bool flag) {
   int lhsValue = lhs->eval(state);
   int rhsValue = rhs->eval(state);
   bool condition = false;
@@ -173,7 +179,7 @@ EndStatement::EndStatement(TokenScanner &scanner) {
   //do nothing
 }
 
-void EndStatement::execute(EvalState &state, Program &program) {
+void EndStatement::execute(EvalState &state, Program &program,bool flag) {
   program.setEndState(true);
 }
 

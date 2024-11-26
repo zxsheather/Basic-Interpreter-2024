@@ -32,7 +32,7 @@ int main() {
             std::string input;
             getline(std::cin, input);
             if (input.empty())
-                return 0;
+                continue;
             processLine(input, program, state);
         } catch (ErrorException &ex) {
             std::cout << ex.getMessage() << std::endl;
@@ -201,7 +201,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
                 program.setCurrentLine(LineNumber);
                 while (!program.getEndState() && LineNumber != -1) {
                     Statement *stmt = program.getParsedStatement(LineNumber);
-                    stmt->execute(state, program);
+                    stmt->execute(state, program,true);
                     LineNumber = program.getCurrentLine();
 
                 }
@@ -221,13 +221,13 @@ void processLine(std::string line, Program &program, EvalState &state) {
                 std::cout << "Yet another basic interpreter" << std::endl;
             } else if (token == "LET") {
                 auto stmt = std::make_unique<LetStatement>(scanner);
-                stmt->execute(state, program);
+                stmt->execute(state, program,false);
             } else if (token == "PRINT") {
                 auto stmt = std::make_unique<PrintStatement>(scanner);
-                stmt->execute(state, program);
+                stmt->execute(state, program,false);
             } else if (token == "INPUT") {
                 auto stmt = std::make_unique<InputStatement>(scanner);
-                stmt->execute(state, program);
+                stmt->execute(state, program,false);
             } else {
                 error("SYNTAX ERROR");
             }
