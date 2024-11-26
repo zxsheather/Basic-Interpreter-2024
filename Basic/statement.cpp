@@ -112,9 +112,9 @@ IfStatement::IfStatement(TokenScanner &scanner) {
   while (true) {
     scanner1 += scanner2;
     if (!scanner.hasMoreTokens()) {
-      error("SYNTAX ERROR");
       delete lhs;
       delete rhs;
+      error("SYNTAX ERROR");
     }
     scanner2 = scanner.nextToken();
     if (scanner2 == "=" || scanner2 == "<" || scanner2 == ">") {
@@ -129,9 +129,9 @@ IfStatement::IfStatement(TokenScanner &scanner) {
   while (scanner2 != "THEN") {
     scanner1 += scanner2;
     if (!scanner.hasMoreTokens()) {
-      error("SYNTAX ERROR");
       delete lhs;
       delete rhs;
+      error("SYNTAX ERROR");
     }
     scanner2 = scanner.nextToken();
   }
@@ -152,9 +152,9 @@ void IfStatement::execute(EvalState &state, Program &program) {
   } else if (op == ">") {
     condition = (lhsValue > rhsValue);
   } else {
-    error("SYNTAX ERROR");
     delete lhs;
     delete rhs;
+    error("SYNTAX ERROR");
   }
   if (condition) {
     program.setCurrentLine(lineNumber);
