@@ -13,7 +13,7 @@
 #include <set>
 #include <unordered_map>
 #include "statement.hpp"
-
+#include <memory>
 
 class Statement;
 
