@@ -36,11 +36,9 @@ LetStatement::LetStatement(TokenScanner &scanner) {
   var = scanner.nextToken();
   if (var == "LET" || var == "PRINT" || var == "INPUT" || var == "GOTO" || var == "IF" || var == "END" || var == "REM"
       || var == "RUN" || var == "LIST" || var == "CLEAR" || var == "QUIT" || var == "HELP") {
-    LetStatement::~LetStatement();
     error("SYNTAX ERROR");
   }
   if (scanner.nextToken() != "=") {
-    LetStatement::~LetStatement();
     error("SYNTAX ERROR");
   }
   exp = parseExp(scanner);
@@ -54,6 +52,7 @@ void LetStatement::execute(EvalState &state, Program &program) {
 
 LetStatement::~LetStatement() {
   delete exp;
+  //exp=nullptr;
 }
 
 PrintStatement::PrintStatement(TokenScanner &scanner) {

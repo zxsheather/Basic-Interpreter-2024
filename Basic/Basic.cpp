@@ -114,6 +114,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
                     Statement *stmt=program.getParsedStatement(LineNumber);
                     stmt->execute(state,program);
                     LineNumber=program.getCurrentLine();
+                    //delete stmt;
                 }
                 program.setEndState(false);
             }else if(token=="LIST") {
@@ -125,8 +126,12 @@ void processLine(std::string line, Program &program, EvalState &state) {
             }else if(token=="CLEAR") {
                 program.clear();
                 state.Clear();
-
             }else if(token=="QUIT") {
+                int LineNumber=program.getFirstLineNumber();
+                while(LineNumber!=-1) {
+                    delete program.getParsedStatement(LineNumber);
+                    LineNumber=program.getNextLineNumber(LineNumber);
+                }
                 exit(0);
             }else if(token=="HELP") {
                 std::cout<<"Yet another basic interpreter"<<std::endl;
@@ -154,4 +159,3 @@ void processLine(std::string line, Program &program, EvalState &state) {
 
     //todo
 }
-

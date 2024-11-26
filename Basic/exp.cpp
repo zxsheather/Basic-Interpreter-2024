@@ -6,6 +6,8 @@
 
 #include "exp.hpp"
 
+#include "statement.hpp"
+
 
 /*
  * Implementation notes: the Expression class
@@ -59,7 +61,6 @@ IdentifierExp::IdentifierExp(std::string name) {
 
 int IdentifierExp::eval(EvalState &state) {
     if (!state.isDefined(name)) {
-        delete this;
         error("VARIABLE NOT DEFINED");
     }
     return state.getValue(name);
@@ -121,7 +122,11 @@ int CompoundExp::eval(EvalState &state) {
     if (op == "-") return left - right;
     if (op == "*") return left * right;
     if (op == "/") {
-        if (right == 0) error("DIVIDE BY ZERO");
+        if (right == 0) {
+            delete lhs;
+            delete rhs;
+            error("DIVIDE BY ZERO");
+        }
         return left / right;
     }
     return 0;
