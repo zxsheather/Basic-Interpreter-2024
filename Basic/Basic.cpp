@@ -32,7 +32,7 @@ int main() {
             std::string input;
             getline(std::cin, input);
             if (input.empty())
-                continue;
+                return 0;
             processLine(input, program, state);
         } catch (ErrorException &ex) {
             std::cout << ex.getMessage() << std::endl;
@@ -203,6 +203,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
                     Statement *stmt = program.getParsedStatement(LineNumber);
                     stmt->execute(state, program);
                     LineNumber = program.getCurrentLine();
+
                 }
                 program.setEndState(false);
             } else if (token == "LIST") {
