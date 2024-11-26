@@ -33,6 +33,7 @@ int main() {
                 continue;
             processLine(input, program, state);
         } catch (ErrorException &ex) {
+            delete program.getParsedStatement(program.getCurrentLine());
             std::cout << ex.getMessage() << std::endl;
         }
     }
@@ -127,11 +128,6 @@ void processLine(std::string line, Program &program, EvalState &state) {
                 program.clear();
                 state.Clear();
             }else if(token=="QUIT") {
-                int LineNumber=program.getFirstLineNumber();
-                while(LineNumber!=-1) {
-                    delete program.getParsedStatement(LineNumber);
-                    LineNumber=program.getNextLineNumber(LineNumber);
-                }
                 exit(0);
             }else if(token=="HELP") {
                 std::cout<<"Yet another basic interpreter"<<std::endl;
