@@ -240,6 +240,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
                     //delete stmt;
                     throw;
                 }
+                delete stmt;
             } else if (token == "INPUT") {
                 InputStatement *stmt=nullptr;
                 try {
@@ -249,6 +250,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
                     delete stmt;
                     throw;
                 }
+                delete stmt;
             } else {
                 error("SYNTAX ERROR");
             }
