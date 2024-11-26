@@ -21,6 +21,9 @@ Program::~Program() {
 void Program::clear() {
     lineNumbers.clear();
     sourceLines.clear();
+    for(auto &it:parsedLines) {
+        delete it.second;
+    }
     parsedLines.clear();
     // Replace this stub with your own code
     //todo
