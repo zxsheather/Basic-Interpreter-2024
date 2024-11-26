@@ -123,8 +123,6 @@ int CompoundExp::eval(EvalState &state) {
     if (op == "*") return left * right;
     if (op == "/") {
         if (right == 0) {
-            delete lhs;
-            delete rhs;
             error("DIVIDE BY ZERO");
         }
         return left / right;

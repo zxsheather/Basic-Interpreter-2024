@@ -60,7 +60,8 @@ PrintStatement::PrintStatement(TokenScanner &scanner) {
 }
 
 void PrintStatement::execute(EvalState &state, Program &program) {
-  std::cout << exp->eval(state) << std::endl;
+  int value = exp->eval(state);
+  std::cout << value << std::endl;
   program.getNextLineNumber(program.getCurrentLine());
 }
 

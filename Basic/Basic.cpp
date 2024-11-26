@@ -237,7 +237,7 @@ void processLine(std::string line, Program &program, EvalState &state) {
                     stmt = new PrintStatement(scanner);
                     stmt->execute(state, program);
                 } catch (ErrorException &ex) {
-                    //delete stmt;
+                    delete stmt;
                     throw;
                 }
                 delete stmt;
