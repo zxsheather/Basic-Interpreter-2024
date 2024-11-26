@@ -48,6 +48,9 @@ std::string Program::getSourceLine(int lineNumber) {
 
 void Program::setParsedStatement(int lineNumber, Statement *stmt) {
     if(lineNumbers.find(lineNumber)!=lineNumbers.end()) {
+        if(parsedLines.find(lineNumber)!=parsedLines.end()) {
+            delete parsedLines[lineNumber];
+        }
         parsedLines[lineNumber] = stmt;
     }else {
         error("LINE NUMBER ERROR");
