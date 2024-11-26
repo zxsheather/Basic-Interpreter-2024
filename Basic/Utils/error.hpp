@@ -29,7 +29,6 @@ public:
 
     std::string getMessage() const;
 
-    ~ErrorException() _NOEXCEPT override = default;
 
 private:
     std::string message;
