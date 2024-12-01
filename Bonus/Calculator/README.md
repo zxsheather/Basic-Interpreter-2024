@@ -2,18 +2,18 @@
 
 ## 题目描述
 
-要求用 antlr 实现正整数四则运算的功能，即加减乘除，意在让大家熟悉 antlr 的使用。
+要求用 `Antlr` 实现正整数四则运算的功能，即加减乘除，意在让大家熟悉 `Antlr` 的使用。
 
-## 配置 antlr 运行环境
+## 配置 Antlr 运行环境
 
-完成该 Bonus 需要用到的 `antlr` 运行时库是 `lib/antlr4-runtime_4.13.1_amd64.deb`. 
+完成该 Bonus 需要用到的 `Antlr` 运行时库是 `lib/antlr4-runtime_4.13.1_amd64.deb`. 
 打开文件所在目录，执行以下命令，该库会被安装到`/usr/include`：
 
 ```shell
 sudo apt install ./antlr4-runtime_4.13.1_amd64.deb
 ```
 
-这个包含有 Antlr 4.13.1 的动态链接库、静态链接库以及头文件，如果不装这个包，
+这个包含有 `Antlr 4.13.1` 的动态链接库、静态链接库以及头文件，如果不装这个包，
 将导致你的程序在编译时找不到 Antlr 的头文件和动态链接库，从而编译失败。
 
 使用 Archlinux 的同学可以直接使用以下命令安装运行环境:
@@ -53,7 +53,7 @@ Calculator
 
 `main.cpp` 是程序的入口，我们已经写好了测试代码，也不需要修改。
 
-`EvalVisitor.h` 是计算器类，继承自`ExprVisitor`，你需要补全其中的方法。
+`EvalVisitor.h` 是计算器类，继承自 `ExprVisitor`，你需要补全其中的方法。
 
 ## std::any
 
@@ -84,16 +84,16 @@ int &ref = std::any_cast <int&> (x);
 
 下面以 `*Context` 表示所有以 `Context` 结尾的类，例如 `ExprParser::AddSubContext` 等。
 
-- 初步了解表达式树的概念，知道 `*Context` 类的含义.
-- 类之间的派生关系，例如各种 `*Context` 类都继承自 `antlr4::ParserRuleContext` 类.
-- `visit` 函数的使用，用于访问树上的节点.
+- 初步了解表达式树的概念，知道 `*Context` 类的含义；
+- 类之间的派生关系，例如各种 `*Context` 类都继承自 `antlr4::ParserRuleContext` 类；
+- `visit` 函数的使用，用于访问树上的节点；
 ```cpp
 virtual std::any visit(ParseTree *tree) override {
   return tree->accept(this);
 }
 ```
-- `*Context` 每个类及其成员，用于访问子树.
-- `ExprParser` 中的枚举类 `enum`，用于判断表达式类型.
+- `*Context` 每个类及其成员，用于访问子树；
+- `ExprParser` 中的枚举类 `enum`，用于判断表达式类型。
 
 ## 评测
 
