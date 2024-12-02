@@ -21,7 +21,8 @@ int main(int argc, const char* argv[]) {
   antlr4::tree::ParseTree *tree = parser.calc();
 
   EvalVisitor eval;
-  eval.visit(tree);
+  int result=std::any_cast<int>(eval.visit(tree));
+  std::cout<<result<<std::endl;
 
   return 0;
 }
