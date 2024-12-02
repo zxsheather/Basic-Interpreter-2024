@@ -1,0 +1,56 @@
+[
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/Basic.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/Basic.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/Basic.cpp",
+  "output": "CMakeFiles/code.dir/Basic/Basic.cpp.o"
+},
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/evalstate.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/evalstate.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/evalstate.cpp",
+  "output": "CMakeFiles/code.dir/Basic/evalstate.cpp.o"
+},
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/exp.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/exp.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/exp.cpp",
+  "output": "CMakeFiles/code.dir/Basic/exp.cpp.o"
+},
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/parser.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/parser.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/parser.cpp",
+  "output": "CMakeFiles/code.dir/Basic/parser.cpp.o"
+},
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/program.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/program.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/program.cpp",
+  "output": "CMakeFiles/code.dir/Basic/program.cpp.o"
+},
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/statement.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/statement.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/statement.cpp",
+  "output": "CMakeFiles/code.dir/Basic/statement.cpp.o"
+},
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/Utils/error.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/Utils/error.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/Utils/error.cpp",
+  "output": "CMakeFiles/code.dir/Basic/Utils/error.cpp.o"
+},
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/Utils/tokenScanner.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/Utils/tokenScanner.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/Utils/tokenScanner.cpp",
+  "output": "CMakeFiles/code.dir/Basic/Utils/tokenScanner.cpp.o"
+},
+{
+  "directory": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/code.dir/Basic/Utils/strlib.cpp.o -c /Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/Utils/strlib.cpp",
+  "file": "/Users/apple/Desktop/Programming/ACMOJ/Basic-Interpreter-2024/Basic/Utils/strlib.cpp",
+  "output": "CMakeFiles/code.dir/Basic/Utils/strlib.cpp.o"
+}
+]
